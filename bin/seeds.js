@@ -1,3 +1,6 @@
+// Starting our database off with some database
+// seed.js is used to insert some products
+// running multiple times will add more products.
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/ironshop');
 const Product = require('../models/product-model.js');
