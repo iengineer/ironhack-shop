@@ -25,7 +25,23 @@ const products = [
   {
     name: 'Nintendo Switch',
     price: 299.99,
-    imageUrl: 'http://media.gq.com/photos/57c6f39209f7003c4afd2c4d/3:2/w_800/drink_gallery5.546e2142f4c6.jpg',
+    imageUrl: 'http://media.nintendo.com/nintendo/cocoon/switch-static-pages/switch/etRgxnAu0zRX4bmWnt9K628wG7YQUI6t/images/switch/buy-now/bundle_color_console.jpg',
     description: 'More expensive if you want anything extra.',
+  },
+  {
+    name: 'Fender Stratocaster',
+    price: 999.99,
+    imageUrl: 'https://stuff.fendergarage.com/images/Q/a/L/fcwd-products-electric-guitars-stratocaster-01-hero-white-strat.jpg',
+    description: 'This is the cheap one.',
   }
 ];
+
+//db.products.insertMany()
+Product.create(products, (err, productDocs) => {
+  if (err) {
+    throw err;
+  }
+  productDocs.forEach((oneProduct) => {
+    console.log(`NEW PRODUCT: ${oneProduct.name} -> ${oneProduct._id}`);
+  });
+});
