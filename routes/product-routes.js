@@ -7,16 +7,15 @@ const productRoutes = express.Router();
 
 
 productRoutes.get('/products', (req, res, next) => {
-  Product.find((err, productsList) => {
+  Product.find((err, productList) => {
     if (err) {
       next(err);
       return;
     }
-  })
   res.render('products/products-list-view.ejs', {
-    products: productsList
+    products: productList
+    });
   });
 });
-
 
 module.exports = productRoutes;
