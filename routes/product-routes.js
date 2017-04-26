@@ -18,4 +18,10 @@ productRoutes.get('/products', (req, res, next) => {
   });
 });
 
+
+productRoutes.get('/products/new', (req, res, next) => {
+  // Just shows a form. Nothing else.
+  res.render('products/new-product-view.ejs');
+});
+
 module.exports = productRoutes;
