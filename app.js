@@ -7,6 +7,7 @@ const bodyParser   = require('body-parser');
 const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
 
+
 mongoose.connect('mongodb://localhost/ironshop');
 
 const app = express();
@@ -18,7 +19,7 @@ app.set('view engine', 'ejs');
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-// will uncomment after placing our favicon in /public
+// uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -29,13 +30,13 @@ app.use(layouts);
 
 
 // ROUTES GO HERE
-// ------------------------------------------
+// ----------------------------------------
 const index = require('./routes/index');
 app.use('/', index);
 
-const productRoutes = require('./routes/product-routes');
+const productRoutes = require('./routes/product-routes.js');
 app.use('/', productRoutes);
-// ------------------------------------------
+// ----------------------------------------
 
 
 // catch 404 and forward to error handler

@@ -1,8 +1,7 @@
-// Starting our database off with some database
-// seed.js is used to insert some products
-// running multiple times will add more products.
 const mongoose = require('mongoose');
+
 mongoose.connect('mongodb://localhost/ironshop');
+
 const Product = require('../models/product-model.js');
 
 
@@ -34,17 +33,19 @@ const products = [
   {
     name: 'Fender Stratocaster',
     price: 999.99,
-    imageUrl: 'https://stuff.fendergarage.com/images/Q/a/L/fcwd-products-electric-guitars-stratocaster-01-hero-white-strat.jpg',
-    description: 'This is the cheap one.',
+    imageUrl: 'http://images.samash.com/sa/F56/F5602305X.fpx?cvt=jpg?cell=540,400&qlt=90&cvt=jpg',
+    description: 'That is the cheap one.'
   }
 ];
 
-//db.products.insertMany()
+
+  // db.products.insertMany()
 Product.create(products, (err, productDocs) => {
   if (err) {
     throw err;
   }
+
   productDocs.forEach((oneProduct) => {
-    console.log(`NEW PRODUCT: ${oneProduct.name} -> ${oneProduct._id}`);
+    console.log(`NEW PRODUCT ${oneProduct.name} -> ${oneProduct._id}`);
   });
 });
