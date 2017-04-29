@@ -58,6 +58,23 @@ const theProduct = new Product({  //                  |
   });
 });
 
+productRoutes.get('/products/expensive', (req, res, next) => {
+  Product
+    .find()
+    .sort({ price: -1 }) // REVERSE ORDER (AKA) 'DESCENDING'
+    .limit(10)
+    .exec((err, productList) => {
+      if (err) {
+        next(err);
+        return;
+      }
+
+      res.render('products/expensive-view.ejs', {
+        products: productList
+      });
+    });
+});
+
 
 // OLD VERSION ===> using query strings
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -179,7 +196,7 @@ productRoutes.get('/search', (req, res, next) => {
         return;
       }
 
-      res.render('product/search-view.ejs', {
+      res.render('products/search-view.ejs', {
         products: searchResults
       });
     }
