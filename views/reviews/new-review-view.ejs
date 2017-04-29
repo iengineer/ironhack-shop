@@ -1,5 +1,13 @@
 <h2> PRODUCT REVIEW </h2>
 
+<% if (typeof validationErrors !== 'undefined') { %>
+  <ul>
+    <% for (key in validationErrors) { %>
+      <li> <%= validationErrors[key].message %> </li>
+    <% } %>
+  </ul>
+<% } %>
+
 
 <h3><%= product.name %></h3>
 <img src="<%= product.imageUrl %>" width="100%">

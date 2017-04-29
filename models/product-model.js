@@ -6,14 +6,30 @@ const Schema = mongoose.Schema;
 
 
 const productSchema = new Schema({
-  name: { type: String },
-  price: { type: Number, default: 0 },
-  imageUrl: { type: String, default: '/images/box.gif' },
-  description: { type: String },
-  reviews: [ Review.schema ]
+  name: {
+    type: String,
+    required: [true, 'Please give the product a name.']
+  },
+  price: {
+    type: Number,
+    default: 0
+  },
+  imageUrl: {
+    type: String,
+    default: '/images/box.gif'
+  },
+  description: {
+    type: String
+  },
+  reviews: [ Review.schema ],
+  category: {
+    type: String,
+    enum: [
+      'Games', 'Music', 'Movies', 'Books', 'Cookware'
+    ]
+  }
 });
 
 const Product = mongoose.model('Product', productSchema);
-
 
 module.exports = Product;

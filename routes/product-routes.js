@@ -42,7 +42,9 @@ const theProduct = new Product({  //                  |
 
   theProduct.save((err) => {
     if (err) {
-      next(err);
+      res.render('products/new-product-view.ejs', {
+        validationErrors: theProduct.errors
+      });
       return;
     }
 
@@ -158,6 +160,30 @@ productRoutes.post('/products/:id/delete', (req, res, next) => {
     }
     res.redirect('/products');
   });
+});
+
+
+productRoutes.get('/search', (req, res, next) => {
+  const searchTerm = req.query.productSearchTerm;
+  if (!searchTerm) {
+    res.render('products/search-view.ejs');
+    return;
+  }
+  const searchRegex = new RegExp(searchTerm, 'i');
+
+  Product.find(
+    { name: searchRegex },
+    (err, searchResults) => {
+      if (err) {
+        next(err);
+        return;
+      }
+
+      res.render('product/search-view.ejs', {
+        products: searchResults
+      });
+    }
+  );
 });
 
 
